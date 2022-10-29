@@ -1,0 +1,737 @@
+<Menu>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: '[color=99cc66]Home Garden[/color] \n                 [color=ff66b2]Monitoring[/color] \n                             [color=00b2ff]Application[/color]'
+            font_size: 36
+            markup: True
+            bold: True
+            halign: 'left'
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Button:
+            text: 'Set Garden Properties'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 0.5, 0.5, 0.5, 1
+            on_press: 
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'gardenproperties'
+        Button:
+            text: 'View Current Conditions'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 0, 0, 0, 1
+            on_press: 
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'currentconditions'                
+        Button:
+            text: 'Search Recomendations'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 0.5, 0.5, 0.5, 1
+            on_press: 
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'recomendations' 
+        Button:
+            text: 'Manage Notifications'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 0, 0, 0, 1
+            on_press: 
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'notifications'
+
+<CurrentConditions>:
+    lbl0: label0
+    lbl1: label1
+    lbl2: label2
+    lbl3: label3
+    lbl4: label4
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Current Conditions'
+            font_size: 40
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label0
+            text: 'Monitoring Area: '
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label1
+            text: 'Moisture: '
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label2
+            text: 'Humidity: '
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label3
+            text: 'Temperature: '
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label4
+            text: 'Light Level: '
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Button:
+            text: 'Refresh'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 0, 0.7, 1, 1
+            on_press: 
+                root.refresh()         
+        Button:
+            text: 'Switch Device'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 1, 0.4, 0.7, 1
+            on_press:
+                root.switch_device()
+        Button:
+            text: 'Return to Main Menu'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 0.6, 0.8, 0.4, 1
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'menu'
+
+<GardenProperties>:
+    inpt: input
+    lbl0: label0
+    lbl1: label1
+    lbl2: label2
+    lbl3: label3
+    lbl4: label4
+    lbl5: label5
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Garden Properties'
+            font_size: 40
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size      
+        TextInput:
+            id: input
+            hint_text: 'Enter Name of Plant (Singular Form)'
+            hint_text_color: 0.5, 0.5, 0.5, 1
+            text: ''
+            font_size: 32
+            halign: 'center'
+            multiline: False
+            color: 0, 0, 0, 1
+            background_normal: ''
+            background_color: 1, 1, 1, 1
+            on_text_validate:
+                root.set_plant()
+        Label:
+            id: label0
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label1
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label2
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label3
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label4
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label5
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Button:
+            text: 'Switch Device'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 1, 0.4, 0.7, 1
+            on_press:
+                root.switch_device()
+        Button:
+            text: 'Return to Main Menu'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 0.6, 0.8, 0.4, 1
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'menu'
+
+<Recomendations>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Search Recomendations'
+            font_size: 40
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size      
+        Button:
+            text: 'Garden Advice for Currently Monitored Plants'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 0, 0.7, 1, 1
+            on_press: 
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'advice'
+                app.advice()                
+        Button:
+            text: 'Search Ideal Conditions'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 1, 0.4, 0.7, 1
+            on_press: 
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'ideal'
+        Button:
+            text: 'Return to Main Menu'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 0.6, 0.8, 0.4, 1
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'menu'
+
+<Advice>:
+    lbl0: label0
+    lbl1: label1
+    lbl2: label2
+    lbl3: label3
+    lbl4: label4
+    lbl5: label5
+    lbl6: label6
+    lbl7: label7
+    lbl8: label8
+    lbl9: label9
+    GridLayout:
+        cols: 1
+        row_default_height: 15
+        Label:
+            text: 'Currently Monitored For Plants Advice'
+            font_size: 36
+            size_hint_y: 12.5
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        GridLayout:
+            cols: 2
+            size_hint_y: 75
+            Label:
+                id: label0
+                text: 'Currently Monitored Plant: '
+                font_size: 32
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.2, 0.2, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: label5
+                text: 'Currently Monitored Plant: '
+                font_size: 32
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.6, 0.2, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: label1
+                text: 'Monitoring Area: '
+                font_size: 32
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.2, 0.2, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: label6
+                text: 'Monitoring Area: '
+                font_size: 32
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.6, 0.2, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                text: 'Advice/Insight:'
+                font_size: 36
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.2, 0.2, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                text: 'Advice/Insight:'
+                font_size: 36
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.6, 0.2, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: label2
+                text: ''
+                font_size: 20
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.2, 0.2, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: label7
+                text: ''
+                font_size: 20
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.6, 0.2, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: label3
+                text: ''
+                font_size: 20
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.2, 0.2, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: label8
+                text: ''
+                font_size: 20
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.6, 0.2, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: label4
+                text: ''
+                font_size: 20
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.2, 0.2, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            Label:
+                id: label9
+                text: ''
+                font_size: 20
+                color: 0, 0, 0, 1
+                canvas.before:
+                    Color:
+                        rgba: 1, 0.6, 0.2, 1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+        Button:
+            text: 'Return to Search Recomendations'
+            font_size: 32
+            color: 1, 1, 1, 1
+            size_hint_y: 12.5
+            background_normal: ''
+            background_color: 0.6, 0.8, 0.4, 1
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'recomendations'
+
+<Ideal>:
+    inpt: input
+    lbl0: label0
+    lbl1: label1
+    lbl2: label2
+    lbl3: label3
+    lbl4: label4
+    lbl5: label5
+    lbl6: label6
+    lbl7: label7
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Ideal Conditions'
+            font_size: 40
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size      
+        TextInput:
+            id: input
+            hint_text: 'Enter Name of Plant (Singular Form)'
+            hint_text_color: 0.5, 0.5, 0.5, 1
+            text: ''
+            font_size: 32
+            halign: 'center'
+            multiline: False
+            color: 0, 0, 0, 1
+            background_normal: ''
+            background_color: 1, 1, 1, 1
+            on_text_validate:
+                root.search()
+        Label:
+            id: label0
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 0.6, 0.2, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label1
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 0.6, 0.2, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label2
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 0.6, 0.2, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label3
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 0.6, 0.2, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label4
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 0.6, 0.2, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            text: 'Advice/Insght: '
+            font_size: 36
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 0.6, 0.2, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label5
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 0.6, 0.2, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label6
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 0.6, 0.2, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label7
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 0.6, 0.2, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Button:
+            text: 'Return to Search Recomendations'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 0.6, 0.8, 0.4, 1
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'recomendations'
+
+<Notifications>:
+    lbl0: label0
+    lbl1: label1
+    lbl2: label2
+    lbl3: label3
+    lbl4: label4
+    lbl5: label5
+    lbl6: label6
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Notifications'
+            font_size: 40
+            color: 0, 0, 0, 1
+            bold: True
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label0
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label1
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label2
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label3
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label4
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label5
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            id: label6
+            text: ''
+            font_size: 32
+            color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Button:
+            text: 'Clear Notifications'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 1, 0.4, 0.7, 1
+            on_press:
+                root.clear()
+        Button:
+            text: 'Return to Main Menu'
+            font_size: 32
+            color: 1, 1, 1, 1
+            background_normal: ''
+            background_color: 0.6, 0.8, 0.4, 1
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'menu'
